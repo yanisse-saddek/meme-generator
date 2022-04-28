@@ -7,20 +7,22 @@ var top = 0;
 var bottom = 0;
 
 var background = new Image();
-background.src = "https://media.discordapp.net/attachments/949221180466946078/969195942890864770/Screenshot_2022-04-22-11-17-06-504_com.snapchat.android.jpg?width=269&height=598";
+background.src = "https://media.discordapp.net/attachments/946724370338943017/963369945893335050/unknown.png";
+    console.log(background)
 background.onload = function(){
-    ctx.drawImage(background,0,0);   
+    ctx.drawImage(background,0,0, canvas.width(), canvas.height());   
 }
-
-canvas[0].style.backgroundImage = "url('https://media.discordapp.net/attachments/949221180466946078/969195942890864770/Screenshot_2022-04-22-11-17-06-504_com.snapchat.android.jpg?width=269&height=598')"
+canvas[0].style.backgroundImage = "url('https://media.discordapp.net/attachments/946724370338943017/963369945893335050/unknown.png')"
+// canvas[0].style.backgroundSize = "contain"
+// canvas[0].style.backgroundPosition = "center"
 
 $('#top').keyup((e)=>{
     ctx.clearRect(0, 0, canvas.width(), canvas.height()/2);
-    drawText(e.target.value,"white", 40, 'top');
+    drawText(e.target.value,"black", 40, 'top');
 })
 $('#bottom').keyup((e)=>{
     ctx.clearRect(0, canvas.height()/2, canvas.width(), canvas.height()/2);
-    drawText(e.target.value,"white", 480, 'bottom');
+    drawText(e.target.value,"black", 480, 'bottom');
 })
 
 function drawText(text,fill, dir, textDirection){
@@ -35,11 +37,13 @@ function drawText(text,fill, dir, textDirection){
     ctx.fillStyle=fill;
     ctx.lineWidth=4;
     ctx.fillText(text.toUpperCase(),canvas.width()/2,dir);
+    download()
 }
 
 
 function download(){
-        ctx.drawImage(background,0,0);   
+        ctx.drawImage(background,0,0, canvas.width(), canvas.height());   
+        console.log(background)  
         ctx.fillText(textTop.toUpperCase(),canvas.width()/2, 40);
         ctx.fillText(textBottom.toUpperCase(),canvas.width()/2, bottom);
 }
