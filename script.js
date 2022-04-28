@@ -1,20 +1,20 @@
 var test = $('.ok');
 var canvas = $('#myCanvas');
 var ctx = canvas[0].getContext("2d");
-ctx.font = "bold 30px arial";
-ctx.textAlign="center"
+var background = new Image();
 var top = 0;
 var bottom = 0;
 
-var background = new Image();
+ctx.font = "bold 30px arial";
+ctx.textAlign="center"
+
+$('#valid-upload').click((e)=>{
+    background.src= $('#upload-link').val()
+})
 background.src = "https://media.discordapp.net/attachments/946724370338943017/963369945893335050/unknown.png";
-    console.log(background)
 background.onload = function(){
     ctx.drawImage(background,0,0, canvas.width(), canvas.height());   
 }
-canvas[0].style.backgroundImage = "url('https://media.discordapp.net/attachments/946724370338943017/963369945893335050/unknown.png')"
-// canvas[0].style.backgroundSize = "contain"
-// canvas[0].style.backgroundPosition = "center"
 
 $('#top').keyup((e)=>{
     ctx.clearRect(0, 0, canvas.width(), canvas.height()/2);
@@ -30,20 +30,18 @@ function drawText(text,fill, dir, textDirection){
         textTop = text
         top=dir
     }else{
-        textBottom = text
+        textBottom=text
         bottom=dir
     }
-
     ctx.fillStyle=fill;
     ctx.lineWidth=4;
     ctx.fillText(text.toUpperCase(),canvas.width()/2,dir);
-    download()
+    save()
 }
 
 
-function download(){
+function save(){
         ctx.drawImage(background,0,0, canvas.width(), canvas.height());   
-        console.log(background)  
         ctx.fillText(textTop.toUpperCase(),canvas.width()/2, 40);
         ctx.fillText(textBottom.toUpperCase(),canvas.width()/2, bottom);
 }

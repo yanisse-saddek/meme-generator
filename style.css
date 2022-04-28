@@ -1,8 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
+*{
+    margin:0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.app{
+    height:100vh;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    height:100%;
+    width:80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left{
+    height:90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height:80%;
+}
+.text-input{
+    width:80%;
+    background-color: red;
+}
+.text-input p{
+    text-transform:initial;
+    font-weight: bold;
+}
+.text-input input{
+    border:2px solid black;
+    padding:5Px;
+    border-radius: 4px;
+    outline: none;
+}
+
 #myCanvas{
     border:1px solid black;
     background-repeat: round;
 }
-.ok{
-    width:500px;
-    height:500px
+.change-img{
+    background-color: orange;
+    padding:10px;
+    border-radius: 15px;
 }
+
+
+
+
+
+.upload-options{
+    display: flex;
+}
+
+.modal__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    height: 100vh;
+    background-color: #de5448;
+  }
+  
+  .modal__btn a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #fff;
+    color: #333;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  .modal__box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .5);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .modal__box:target {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal__content {
+    position: relative;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px 30px;
+  }
+  
+  .modal__footer {
+    text-align: right;
+  
+  }
+  .modal__close {
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: red;
+    text-decoration: none;
+  }

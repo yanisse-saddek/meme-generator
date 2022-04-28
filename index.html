@@ -7,11 +7,51 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>    
-    <canvas width="500" crossorigin="anonymous"  height="500" id="myCanvas">o</canvas>    
-    <input type="text" id="top">
-    <input type="text" id="bottom">
-    <p onClick="download()">download</p>    
+<body>   
+    <div class="app">
+        <div class="container">
+
+            <div class="left">
+                <canvas width="500" crossorigin="anonymous"  height="500" id="myCanvas"></canvas>    
+            </div>
+            <div class="right">
+                <div class="text-input">
+                    <div class="input">
+                        <p>Texte du haut</p>
+                        <input type="text" id="top">
+                    </div>
+                    <div class="input">
+                        <p>Texte du bas</p>
+                        <input type="text" id="bottom">
+                    </div>
+                </div>
+                <div class="change">
+                    <a href="#modal__click" class="change-img">Changer d'image</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div id="modal__click" class="modal__box">
+        <div class="modal__content">
+            <h1>Publier une nouvelle image</h1>
+            <div class="upload-options">
+                <div class="upload">
+                    <p>Avec un lien</p>
+                    <input type="text" id="upload-link">
+                </div>
+                <div class="upload">
+                    <p>Depuis votre ordinateur</p>
+                    <input type="file">
+                </div>
+            </div>
+            <div class="modal__footer">
+                <p id="valid-upload">Valider</p>
+            </div>
+            <a href="#" class="modal__close">&times;</a>
+        </div>
+    </div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.js">
 </script>
