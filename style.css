@@ -34,15 +34,15 @@
     width:80%;
     position: relative;
 }
-.text-input p{
-    text-transform:initial;
-    font-weight: bold;
-}
 .text-input input{
     border:2px solid black;
     padding:5Px;
     border-radius: 4px;
     outline: none;
+}
+.input{
+    background-color: lightgray;
+
 }
 .select{
     display: flex;
@@ -53,10 +53,9 @@
     background-color: lightgray;
     border-radius: 10px;
 }
-.top-color{
+.pick{
     height:25px;
     width:25px;
-    background-color: orange;
 }
 .color-list{
     display: grid;
@@ -66,7 +65,8 @@
     background-color: gray;
     padding:10px;
     border-radius: 10PX;
-    left:200px;
+    left:220px;
+    top:0;
 }
 .color-list div{
     height:30px;
