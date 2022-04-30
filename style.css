@@ -32,7 +32,7 @@
 }
 .text-input{
     width:80%;
-    background-color: red;
+    position: relative;
 }
 .text-input p{
     text-transform:initial;
@@ -43,6 +43,27 @@
     padding:5Px;
     border-radius: 4px;
     outline: none;
+}
+.select{
+    display: flex;
+    align-items: center;
+}
+.top-color{
+    height:25px;
+    width:25px;
+    background-color: orange;
+}
+.color-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:100px;
+    position: absolute;
+    background-color: orange;
+    left:200px;
+}
+.color-list div{
+    height:30px;
+    width:30px;
 }
 
 #myCanvas{
@@ -123,3 +144,19 @@
     color: red;
     text-decoration: none;
   }
+
+.red{
+    background-color: red;
+}
+.green{
+    background-color: green;
+}
+.orange{
+    background-color: orange;
+}
+.black{
+    background-color: black;
+}
+.blue{
+    background-color: blue;
+}

@@ -10,7 +10,6 @@
 <body>   
     <div class="app">
         <div class="container">
-
             <div class="left">
                 <canvas width="500" crossorigin="anonymous"  height="500" id="myCanvas"></canvas>    
             </div>
@@ -18,7 +17,17 @@
                 <div class="text-input">
                     <div class="input">
                         <p>Texte du haut</p>
-                        <input type="text" id="top">
+                        <div class="color-list">
+                            <div class="red" onClick="changeColor('top-red')"></div>
+                            <div class="green" onClick="changeColor('top-green')"></div>
+                            <div class="blue" onClick="changeColor('top-blue')"></div>
+                            <div class="orange" onClick="changeColor('top-orange')"></div>
+                            <div class="black" onClick="changeColor('top-black')"></div>
+                        </div>
+                        <div class="select">
+                            <input type="text" id="top">
+                            <div class="top-color"></div>
+                        </div>
                     </div>
                     <div class="input">
                         <p>Texte du bas</p>
