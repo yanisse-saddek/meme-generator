@@ -16,7 +16,7 @@ var lineheight = 25;
 $('#valid-upload').click((e)=>{
     background.src= $('#upload-link').val()
 })
-background.src = "https://media.discordapp.net/attachments/946724370338943017/968449899928616960/Snapchat-71237284.jpg?width=447&height=596";
+background.src = "https://media.discordapp.net/attachments/940189612335317043/969530638384365628/Screenshot_2022-04-22-11-17-06-504_com.snapchat.android.jpg?width=269&height=598";
 background.onload = function(){
     canvas[0].width=background.width
     canvas[0].height=background.height
@@ -79,7 +79,6 @@ function drawText(text,fill, dir, textDirection){
     save()
 }
 $('#size').change((e)=>{
-    console.log(e.target.value)
     ctx.font = e.target.value+'px '+font;
     save()
 })
@@ -97,10 +96,11 @@ function save(lines){
     })
 
 }
+$('.top-color').css('background', topColor)
+$('.bottom-color').css('background', bottomColor)
 
 function changeColor(id){
     var data = id.split('-')
-    console.log(data[0])
     if(data[0]=='top'){
         topColor=data[1]
         $('.top-color').css('background', data[1])
