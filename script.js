@@ -8,6 +8,9 @@ var textBottom = ""
 var textTop = ""
 var fontSize = 30;
 var font = "Comic Sans MS"
+var x = canvas.width()/2;
+var y = canvas.height();
+var lineheight = 25;
 
 
 $('#valid-upload').click((e)=>{
@@ -22,12 +25,22 @@ background.onload = function(){
     
     ctx.font = fontSize+'px '+font;
     ctx.textAlign="center"
+     x = canvas.width()/2;
+     y = canvas.height();
+     lineheight = 25;
+
+        var txt = "OKKKK\nKOKKKKKKKKKKKKKK\nKKKKKK"
+        var lines = txt.split('\n');
+        
+        for (var i = 0; i<lines.length; i++){
+            ctx.fillText(lines[i].toUpperCase(),x, y-(y-fontSize)+ (i*lineheight));
+        }
 }
 
 
 $('#top').keyup((e)=>{
-    ctx.clearRect(0, 0, canvas.width(), canvas.height()/2);
-    drawText(e.target.value,topColor, canvas.height()-(canvas.height()-fontSize), 'top');
+    ctx.clearRect(0, 0, canvas.width(),canvas.width(), canvas.height()/2);
+    drawText(e.target.value,topColor, y-(y-fontSize), 'top');
 })
 $('#bottom').keyup((e)=>{
     ctx.clearRect(0, canvas.height()/2, canvas.width(), canvas.height()/2);
@@ -40,9 +53,9 @@ function drawText(text,fill, dir, textDirection){
     }else{
         textBottom=text
     }
-    ctx.fillStyle=fill;
+    ctx.fillStyle=fill; 
     ctx.lineWidth=4;
-    ctx.fillText(text.toUpperCase(),canvas.width()/2,dir);
+    ctx.fillText(text.toUpperCase(),x,dir);
     save()
 }
 
@@ -50,14 +63,21 @@ function save(){
         ctx.drawImage(background,0,0, canvas.width(), canvas.height());   
         if(textTop){
             ctx.fillStyle=topColor;
-            ctx.fillText(textTop.toUpperCase(),canvas.width()/2, canvas.height()-(canvas.height()-fontSize));
+            ctx.fillText(textTop.toUpperCase(),x, y-(y-fontSize));
         }
         if(textBottom){
-            ctx.fillStyle=bottomColor;
-            ctx.fillText(textBottom.toUpperCase(),canvas.width()/2, canvas.height()-fontSize);
+            ctx.fillStyle=bottomColor;  
+            ctx.fillText(textBottom.toUpperCase(),x, y-fontSize);
         }
 }
 
 function changeColor(id){
-
+    var data = id.split('-')
+    console.log(data[0])
+    if(data[0]=='top'){
+        topColor=data[1]
+        $('.top-color').css('background', data[1])
+    }else{
+        bottomColor=data[1]
+    }
 }
