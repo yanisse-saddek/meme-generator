@@ -78,6 +78,11 @@ function drawText(text,fill, dir, textDirection){
     } 
     save()
 }
+$('#size').change((e)=>{
+    console.log(e.target.value)
+    ctx.font = e.target.value+'px '+font;
+    save()
+})
 function save(lines){
     console.log(dataBottom)
     ctx.drawImage(background,0,0, canvas.width(), canvas.height());  
