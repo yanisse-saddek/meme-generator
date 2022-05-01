@@ -2,7 +2,7 @@ var test = $('.ok');
 var canvas = $('#myCanvas');
 var ctx = canvas[0].getContext("2d");
 var background = new Image();
-var topColor = "black"
+var topColor = "red"
 var bottomColor = "orange"
 var textBottom = ""
 var textTop = ""
@@ -23,27 +23,40 @@ background.onload = function(){
     ctx.drawImage(background,0,0, canvas.width(), canvas.height());  
     x = canvas.width()/2;
     y = canvas.height();
-
+    // var fontSize = x/10;
+    // var font = "Comic Sans MS"
+    
     ctx.font = fontSize+'px '+font;
     ctx.textAlign="center"
 }
 
 
 $('#top').keyup((e)=>{
+    dataTop = []
     ctx.clearRect(canvas.width()/2, 0, canvas.width(), canvas.height()/2);
     drawText(e.target.value,topColor, y-(y-fontSize), 'top');
 })
 
 $('#bottom').keyup((e)=>{
+    dataBottom = []
     ctx.clearRect(0, canvas.height()/2, canvas.width(), canvas.height()/2);
-    drawText(e.target.value,bottomColor, canvas.height()-fontSize, 'bottom');
+    drawText(e.target.value, bottomColor, canvas.height()-fontSize, 'bottom');
+})
+var topSpace = [30, 0]
+$('#top-rangeY').change((e)=>{
+    topSpace[0] = e.target.value
+    drawText(textTop, bottomColor, canvas.height()-fontSize, 'top');
+})
+$('#top-rangeX').change((e)=>{
+    topSpace[1] = parseInt(e.target.value)
+    console.log(topSpace)
+    drawText(textTop, bottomColor, canvas.height()-fontSize, 'top');
 })
 
 
 var dataTop = []
 var dataBottom = []
 function drawText(text,fill, dir, textDirection){
-    
     var txt = text.split('')
     var count = 0
     for(j=0; j<txt.length; j++){
@@ -64,37 +77,36 @@ function drawText(text,fill, dir, textDirection){
         if(textDirection == 'top'){
             dataTop[i] = []
             textTop = text
-            var actualX = (i*fontSize)+30
-            dataTop[i] = [lines[i], actualX, 'top']
-            ctx.fillText(lines[i],x,actualX);
+            var actualY = (i*fontSize)+topSpace[0]
+            var actualX = (x+topSpace[1])
+            dataTop[i] = [lines[i],actualY,actualX, 'top']
+            ctx.fillText(lines[i],actualX,actualY);
         }else{
             dataBottom[i] = []
             textBottom=text
             iLength-i
             var actualY = y-(iLength*fontSize)+(i*30)
             dataBottom[i] = [lines[i], actualY, 'bottom']
-            ctx.fillText(lines[i],x, actualY);
+            ctx.fillText(lines[i],x/2, actualY);
         }
     } 
     save()
 }
+
 $('#size').change((e)=>{
     ctx.font = e.target.value+'px '+font;
     save()
 })
 function save(lines){
-    console.log(dataBottom)
     ctx.drawImage(background,0,0, canvas.width(), canvas.height());  
+    dataTop.map(line=>{
+        ctx.fillStyle=topColor;
+        ctx.fillText(line[0].toUpperCase(),line[2], line[1]);
+    })
     dataBottom.map(line=>{
             ctx.fillStyle=bottomColor;  
             ctx.fillText(line[0].toUpperCase(),x, line[1]);
     })
-    dataTop.map(line=>{
-        ctx.fillStyle=topColor;
-        ctx.fillText(line[0].toUpperCase(),x, line[1]);
-
-    })
-
 }
 $('.top-color').css('background', topColor)
 $('.bottom-color').css('background', bottomColor)
@@ -111,7 +123,5 @@ function changeColor(id){
     save()
 }
 function openColor(id){
-    console.log(id)
-    console.log('oki')
     $(`#${id}`).fadeToggle()
 }

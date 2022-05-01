@@ -42,7 +42,7 @@
 }
 .input{
     background-color: lightgray;
-
+    display: flex;
 }
 .select{
     display: flex;
