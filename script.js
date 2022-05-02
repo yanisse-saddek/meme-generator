@@ -1,4 +1,3 @@
-var test = $('.ok');
 var canvas = $('#myCanvas');
 var ctx = canvas[0].getContext("2d");
 var background = new Image();
@@ -45,7 +44,7 @@ $('#bottom').keyup((e)=>{
 var topSpace = [30, 0]
 var bottomSpace = [30, 0]
 
-$('#top-rangeY').change((e)=>{
+$('#top-rangeY').on('change', (e)=>{
     topSpace[0] = e.target.value
     drawText(textTop, bottomColor, canvas.height()-fontSize, 'top');
 })
