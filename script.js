@@ -43,15 +43,27 @@ $('#bottom').keyup((e)=>{
     drawText(e.target.value, bottomColor, canvas.height()-fontSize, 'bottom');
 })
 var topSpace = [30, 0]
+var bottomSpace = [30, 0]
+
 $('#top-rangeY').change((e)=>{
     topSpace[0] = e.target.value
     drawText(textTop, bottomColor, canvas.height()-fontSize, 'top');
 })
 $('#top-rangeX').change((e)=>{
     topSpace[1] = parseInt(e.target.value)
-    console.log(topSpace)
     drawText(textTop, bottomColor, canvas.height()-fontSize, 'top');
 })
+
+$('#bottom-rangeY').change((e)=>{     
+    bottomSpace[0] = e.target.value  
+    drawText(textBottom, bottomColor, canvas.height()-fontSize, 'bottom');
+})
+$('#bottom-rangeX').change((e)=>{
+    bottomSpace[1] = parseInt(e.target.value)
+    drawText(textBottom, bottomColor, canvas.height()-fontSize, 'bottom');
+
+})
+
 
 
 var dataTop = []
@@ -60,7 +72,7 @@ function drawText(text,fill, dir, textDirection){
     var txt = text.split('')
     var count = 0
     for(j=0; j<txt.length; j++){
-        if(count<20){
+        if(count<15){
             count++
         }else if (txt[j]==" "){
             txt.splice(j, 0, "°");
@@ -77,7 +89,9 @@ function drawText(text,fill, dir, textDirection){
         if(textDirection == 'top'){
             dataTop[i] = []
             textTop = text
-            var actualY = (i*fontSize)+topSpace[0]
+            var actualY = (i*fontSize)
+            actualY += parseInt(topSpace[0])
+            console.log(actualY)
             var actualX = (x+topSpace[1])
             dataTop[i] = [lines[i],actualY,actualX, 'top']
             ctx.fillText(lines[i],actualX,actualY);
@@ -85,8 +99,9 @@ function drawText(text,fill, dir, textDirection){
             dataBottom[i] = []
             textBottom=text
             iLength-i
-            var actualY = y-(iLength*fontSize)+(i*30)
-            dataBottom[i] = [lines[i], actualY, 'bottom']
+            var actualY = y-(iLength*fontSize)+(i*30)-bottomSpace[0]
+            var actualX = x+bottomSpace[1]
+            dataBottom[i] = [lines[i], actualY,actualX, 'bottom']
             ctx.fillText(lines[i],x/2, actualY);
         }
     } 
@@ -105,7 +120,7 @@ function save(lines){
     })
     dataBottom.map(line=>{
             ctx.fillStyle=bottomColor;  
-            ctx.fillText(line[0].toUpperCase(),x, line[1]);
+            ctx.fillText(line[0].toUpperCase(),line[2], line[1]);
     })
 }
 $('.top-color').css('background', topColor)
@@ -125,3 +140,18 @@ function changeColor(id){
 function openColor(id){
     $(`#${id}`).fadeToggle()
 }
+
+$('.drop').on('drop dragdrop',function(e){
+    e.preventDefault();
+    const droppedObject  = $('<div>').html(e.originalEvent.dataTransfer.getData("text/html")).find("img").attr('src');
+    background.src = droppedObject
+});
+$('.drop').on('dragenter',function(e){
+    e.preventDefault();
+})
+
+$('.drop').on('dragover',function(e){
+    e.stopPropagation();
+    e.preventDefault();
+})
+

@@ -11,7 +11,11 @@
     <div class="app">
         <div class="container">
             <div class="left">
-                <canvas width="500" crossorigin="anonymous"  height="500" id="myCanvas"></canvas>    
+                <div class="drop">
+                    <canvas width="500" draggable="true"
+                    crossorigin="anonymous"  
+                    height="500" id="myCanvas"></canvas>    
+                </div>
             </div>
             <div class="right">
                 <div class="text-input">
@@ -51,6 +55,12 @@
                             <div class="select-color" onclick="openColor('bottomcolor')">
                                 <div class="pick bottom-color"></div>
                             </div>
+                        </div>
+                        <div class="select">
+                            <p>X</p>
+                            <input type="range" name="" id="bottom-rangeX" range="10" max="100" min ="-100">
+                            <p>Y</p>
+                            <input type="range" name="" id="bottom-rangeY">
                         </div>
                     </div>
                     <div class="input">
